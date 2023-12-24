@@ -75,7 +75,7 @@ function showPage(array, page) {
           </div>
         </div> 
     `
-    console.log(html);
+    //console.log(html);
     authorContainer.insertAdjacentHTML("beforeend", html);
     }
   }
@@ -86,12 +86,22 @@ above to change the page & add the `active` class  */
 
 paginationList.addEventListener("click", (e) => {
   // 8. Create a variable to store the button which currently has the `active` class
+  const activeButton = paginationList.querySelector(".active");
+  console.log(activeButton);
   // 9-a. Make sure the user has clicked a `button`
   //      Hint: e.target
+  const buttonClicked = e.target.closest("button");
+  console.log(buttonClicked);
   // 9-b. If true...
   //      - Remove the `active` class from the currently active button
   //      - Add the `active` class to the button just clicked
   //      - Call showPage() passing it `authors` and the content of the button just clicked.
+  if (buttonClicked) {
+    activeButton.classList.remove("active");
+    buttonClicked.classList.add("active");
+    showPage(authors, buttonClicked.innerHTML);
+  }
+
 });
 
 /* These function calls are needed to initialize the page */
