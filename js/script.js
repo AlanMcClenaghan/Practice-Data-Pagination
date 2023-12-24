@@ -42,9 +42,14 @@ authors to show on the current page and dynamically add them */
 function showPage(array, page) {
   // 4. Create a variable to represent which author to start with on the page.
   //    The math should be (the page multiplied by the authorsPerPage) minus the authorsPerPage
+  const start = (page * authorsPerPage) - authorsPerPage;
+
   // 5. Create a variable to represent which author to end with on the page.
   //    The math should be (the page multiplied by the authorsPerPage) minus one
+  const end = (page * authorsPerPage) - 1;
   // 6. Reset the authorContainer's content to nothing to prevent previous cards staying on the page
+  authorContainer.innerHTML = "";
+
   // 7-a. Start a loop to the length of the array's length
   // 7-b. Inside, create a conditional checking if `i` is...
   //      - greater than or equal to the start variable
@@ -54,6 +59,26 @@ function showPage(array, page) {
   //      Hint: You'll need to dynamically add each author's information
   // 7-d. Then add this variable to the authorContainer element
   //      Hint: insertAdjacentHTML()
+
+  for (let i = 0; i < array.length; i++) {
+    if (i >= start && i <= end ) {
+      const html = `
+      <div class="author-card">
+          <div class="card-header">
+            <img src="${array[i].image}" alt="photo of ${array[i].name}" />
+          </div>
+          <div class="card-content">
+            <h2 class="title">${array[i].name}</h2>
+            <p>
+              ${array[i].text}
+            </p>
+          </div>
+        </div> 
+    `
+    console.log(html);
+    authorContainer.insertAdjacentHTML("beforeend", html);
+    }
+  }
 }
 
 /* This event listener will handle calling our function
