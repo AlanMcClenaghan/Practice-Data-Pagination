@@ -12,13 +12,28 @@ function handlePagination(array) {
   // 1. Create a variable to store the number of buttons needed.
   //    The math should be (the length of the array divided by the authorsPerPage) rounded up
   //    Hint: Math.ceil()
-   // 2-a. Start a loop to the length of the number of buttons calculated above.
+  const numberOfButtons = Math.ceil(array.length / authorsPerPage);
+  // console.log("Number of Buttons: " + numberOfButtons);
+
+  // 2-a. Start a loop to the length of the number of buttons calculated above.
   // 2-b. Inside, create a variable storing a template literal of the HTML markup of a button
   //      (see example in index.html lines 34 - 36).
   // 2-c. Then add this variable to the paginationList element
   //      Hint: insertAdjacentHTML()
+
+  for (let i = 1; i <= numberOfButtons; i++) {
+    const html = `
+      <li>
+        <button>${i}</button>
+      </li>
+    `
+    // console.log(html);
+    paginationList.insertAdjacentHTML("beforeend", html);
+  }
+
   // 3. Add the `active` class to the first button
   //    Hint: querySelector()
+  paginationList.querySelector("button").classList.add("active");
 }
 
 /* This function will handle calculating how many and which
